@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using PhotoTipsApi.Models;
 using PhotoTipsApi.Repositories;
+using System.Text.Json.Serialization;
 
 namespace PhotoTipsApi
 {
@@ -35,8 +36,12 @@ namespace PhotoTipsApi
             services.AddSingleton<CityRepository>();
             services.AddSingleton<PhotoRepository>();
             
-            services.AddControllers();
-            
+            services.AddControllers()
+            .AddJsonOptions(opts =>
+            {
+                opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
+
             services.AddSwaggerGen();
         }
 

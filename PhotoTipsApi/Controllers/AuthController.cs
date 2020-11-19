@@ -34,14 +34,13 @@ namespace PhotoTipsApi.Controllers
             if (!ValidateEmail(request.Email))
                 return BadRequest("Invalid email");
 
-            var uniqueError = CheckUnique(request.Email, request.PhoneNumber);
+            var uniqueError = CheckUnique(request.Email);
             if (uniqueError != null)
                 return BadRequest(uniqueError);
             var user = new User
             {
                 Email = request.Email.Trim(), PasswordHash = EncryptPassword(request.Password),
-                PhoneNumber = request.PhoneNumber.Trim(),
-                Name = request.Name, Surname = request.Surname, RegistrationDate = DateTime.Now,
+                Name = request.Name, RegistrationDate = DateTime.Now,
             };
             return Ok(new {user = _userRepository.Create(user)});
             //return CreatedAtRoute("Login", new {email = user.Email, password = request.Password}, _userRepository.Create(user));
@@ -94,13 +93,13 @@ namespace PhotoTipsApi.Controllers
             return string.Join("", bytes.Select(x => x.ToString("X2")));
         }
 
-        private string CheckUnique(string email, string phoneNumber)
+        private string CheckUnique(string email)
         {
             if (_userRepository.FindByEmail(email) != null)
                 return $"User with email = '{email}' already exists";
 
-            if (_userRepository.FindByPhoneNumber(phoneNumber) != null)
-                return $"User with phone number = '{phoneNumber}' already exists";
+            //if (_userRepository.FindByPhoneNumber(phoneNumber) != null)
+            //    return $"User with phone number = '{phoneNumber}' already exists";
 
             return null;
         }
