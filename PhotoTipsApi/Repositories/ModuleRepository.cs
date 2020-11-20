@@ -1,7 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
+using Microsoft.EntityFrameworkCore;
 using PhotoTipsApi.Models;
 
 namespace PhotoTipsApi.Repositories
@@ -32,14 +34,14 @@ namespace PhotoTipsApi.Repositories
         }
 
         [CanBeNull]
-        public Module Update([NotNull] Module module)
+        public async Task<Module> Update([NotNull] Module module)
         {
             using var context = new PhotoTipsDbContext();
 
-            var updatedModule = context.Modules.Update(module);
-            context.SaveChanges();
-
-            return updatedModule?.Entity;
+            context.Entry(await context.Modules.FirstOrDefaultAsync(x => x.Id == module.Id)).CurrentValues.SetValues(module);
+            await context.SaveChangesAsync();
+    
+            return await context.Modules.FindAsync(module.Id);
         }
 
         public void Remove([NotNull] Module module)

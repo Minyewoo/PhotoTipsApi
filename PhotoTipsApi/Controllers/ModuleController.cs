@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PhotoTipsApi.Models;
 using PhotoTipsApi.Repositories;
+using System.Threading.Tasks;
 
 namespace PhotoTipsApi.Controllers
 {
@@ -72,7 +73,7 @@ namespace PhotoTipsApi.Controllers
         }
 
         [HttpGet("{id}/addModuleEntry")]
-        public ActionResult<Module> AddLesson(string id, [FromQuery] string moduleEntryId)
+        public async Task<ActionResult<Module>> AddLesson(string id, [FromQuery] string moduleEntryId)
         {
             var module = _moduleRepository.Get(id);
             if (module == null)
@@ -81,10 +82,13 @@ namespace PhotoTipsApi.Controllers
             var moduleEntry = _moduleEntryRepository.Get(moduleEntryId);
             if (moduleEntry == null)
                 NotFound("Module entry not found");
+            
+            if(module.Entries != null)
+                module.Entries.Add(moduleEntry);
+            else
+                module.Entries = new List<ModuleEntry>{ moduleEntry };
 
-            module.Entries.Add(moduleEntry);
-
-            return Ok(new {module = _moduleRepository.Update(module)});
+            return Ok(new {module = await  _moduleRepository.Update(module)});
         }
     }
 }

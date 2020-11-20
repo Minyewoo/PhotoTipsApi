@@ -20,7 +20,7 @@ namespace PhotoTipsApi.Repositories
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql(
-                "Host=localhost:5000;Port=5432;Database=photo_tips;Username=minyewoo;Password=wefunk2020");
+                "Host=localhost;Port=5432;Database=photo_tips;Username=minyewoo;Password=wefunk2020");
         }
     }
 }

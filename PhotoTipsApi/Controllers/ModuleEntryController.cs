@@ -80,24 +80,8 @@ namespace PhotoTipsApi.Controllers
             return Ok(new {module_entry = _moduleEntryRepository.Create(entity)});
         }
 
-        [HttpGet("{id}/addToModule")]
-        public ActionResult<ModuleEntry> AddToModule(string id, [FromQuery] string moduleId)
-        {
-            var module = _moduleRepository.Get(moduleId);
-            if (module == null)
-                NotFound("Module not found");
-
-            var moduleEntry = _moduleEntryRepository.Get(id);
-            if (moduleEntry == null)
-                NotFound("Module entry not found");
-
-            module.Entries.Add(moduleEntry);
-
-            return Ok(new {module = _moduleRepository.Update(module)});
-        }
-
         [HttpGet("{id}/addContentToVideoLecture")]
-        public ActionResult<ModuleEntry> AddContentToVideoLecture(string id, [FromQuery] string lectureContentId)
+        public async Task<ActionResult<ModuleEntry>> AddContentToVideoLecture(string id, [FromQuery] string lectureContentId)
         {
             var moduleEntry = _moduleEntryRepository.Get(id);
             if (moduleEntry == null)
@@ -106,14 +90,16 @@ namespace PhotoTipsApi.Controllers
             var lectureContent = _lectureContentRepository.Get(lectureContentId);
             if (lectureContent == null)
                 NotFound("Module not found");
+            if(moduleEntry.VideoLecture != null)
+                moduleEntry.VideoLecture.Add(lectureContent);
+            else
+                moduleEntry.VideoLecture = new List<LectureContent>{ lectureContent };            
 
-            moduleEntry.VideoLecture.Add(lectureContent);
-
-            return Ok(new {module = _moduleEntryRepository.Update(moduleEntry)});
+            return Ok(new {module = await _moduleEntryRepository.Update(moduleEntry)});
         }
         
         [HttpGet("{id}/addContentToTextLecture")]
-        public ActionResult<ModuleEntry> AddContentToTextLecture(string id, [FromQuery] string lectureContentId)
+        public async Task<ActionResult<ModuleEntry>> AddContentToTextLecture(string id, [FromQuery] string lectureContentId)
         {
             var moduleEntry = _moduleEntryRepository.Get(id);
             if (moduleEntry == null)
@@ -122,10 +108,12 @@ namespace PhotoTipsApi.Controllers
             var lectureContent = _lectureContentRepository.Get(lectureContentId);
             if (lectureContent == null)
                 NotFound("Module not found");
+            if(moduleEntry.TextLecture != null)
+                moduleEntry.TextLecture.Add(lectureContent);
+            else
+                moduleEntry.TextLecture = new List<LectureContent>{ lectureContent };           
 
-            moduleEntry.TextLecture.Add(lectureContent);
-
-            return Ok(new {module = _moduleEntryRepository.Update(moduleEntry)});
+            return Ok(new {module = await  _moduleEntryRepository.Update(moduleEntry)});
         }
     }
 }

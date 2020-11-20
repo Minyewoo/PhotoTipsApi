@@ -26,7 +26,5 @@ namespace PhotoTipsApi.Models
         [Column("video_lecture")] public List<LectureContent> VideoLecture { get; set; }
 
         [Column("video_lecture")] public List<LectureContent> TextLecture { get; set; }
-
-        [ForeignKey("module_id")] public Module Module { get; set; }
     }
 }
