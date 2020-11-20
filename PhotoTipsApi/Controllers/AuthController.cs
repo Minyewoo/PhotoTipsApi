@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading;
 using Microsoft.AspNetCore.Mvc;
 using PhotoTipsApi.Models;
 using PhotoTipsApi.Repositories;
 using JetBrains.Annotations;
 using JWT;
 using JWT.Algorithms;
-using JWT.Builder;
 using JWT.Serializers;
 using PhotoTipsApi.Helpers;
 

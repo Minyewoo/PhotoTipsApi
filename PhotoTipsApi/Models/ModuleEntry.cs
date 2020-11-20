@@ -23,8 +23,10 @@ namespace PhotoTipsApi.Models
 
         [Column("name")] public string Name { get; set; }
 
-        [Column("video_lecture")] public List<LectureContent> VideoLecture { get; set; }
+        [ForeignKey("video_lecture_id")]
+        public virtual ICollection<LectureContent> VideoLecture { get; set; }
 
-        [Column("video_lecture")] public List<LectureContent> TextLecture { get; set; }
+        [ForeignKey("text_lecture_id")]
+        public virtual ICollection<LectureContent> TextLecture { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Microsoft.EntityFrameworkCore;
 using PhotoTipsApi.Models;
 
 namespace PhotoTipsApi.Repositories
@@ -12,42 +13,42 @@ namespace PhotoTipsApi.Repositories
         public User FindByEmail([NotNull] string email)
         {
             using var context = new PhotoTipsDbContext();
-            return context.Users.SingleOrDefault(user => user.Email == email);
+            return context.Users.Include(x=>x.Photos).Include(x=>x.ResidenceCity).SingleOrDefault(user => user.Email == email);
         }
 
         [CanBeNull]
         public User FindByEmailAndPassword([NotNull] string email, [NotNull] string passwordHash)
         {
             using var context = new PhotoTipsDbContext();
-            return context.Users.SingleOrDefault(user => user.Email == email && user.PasswordHash == passwordHash);
+            return context.Users.Include(x=>x.Photos).Include(x=>x.ResidenceCity).SingleOrDefault(user => user.Email == email && user.PasswordHash == passwordHash);
         }
 
         [CanBeNull]
         public User FindByPhoneNumber([NotNull] string phoneNumber)
         {
             using var context = new PhotoTipsDbContext();
-            return context.Users.SingleOrDefault(user => user.PhoneNumber == phoneNumber);
+            return context.Users.Include(x=>x.Photos).Include(x=>x.ResidenceCity).SingleOrDefault(user => user.PhoneNumber == phoneNumber);
         }
 
         [CanBeNull]
         public User FindByPhoneNumberAndPassword(string phoneNumber, string passwordHash)
         {
             using var context = new PhotoTipsDbContext();
-            return context.Users.SingleOrDefault(user =>
+            return context.Users.Include(x=>x.Photos).Include(x=>x.ResidenceCity).SingleOrDefault(user =>
                 user.PhoneNumber == phoneNumber && user.PasswordHash == passwordHash);
         }
 
         public List<User> Get()
         {
             using var context = new PhotoTipsDbContext();
-            return context.Users.ToList();
+            return context.Users.Include(x=>x.Photos).Include(x=>x.ResidenceCity).ToList();
         }
 
         [CanBeNull]
         public User Get([NotNull] string id)
         {
             using var context = new PhotoTipsDbContext();
-            return context.Users.Find(id);
+            return context.Users.Include(x=>x.Photos).Include(x=>x.ResidenceCity).SingleOrDefault(x=>x.Id == id);
         }
 
         [NotNull]
@@ -74,6 +75,7 @@ namespace PhotoTipsApi.Repositories
         {
             using var context = new PhotoTipsDbContext();
             context.Users.Remove(user);
+            context.SaveChanges();
         }
 
         public void Remove([NotNull] string id)

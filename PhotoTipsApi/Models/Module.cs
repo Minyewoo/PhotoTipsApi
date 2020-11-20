@@ -17,6 +17,7 @@ namespace PhotoTipsApi.Models
 
         [Column("description")] public string Description { get; set; }
 
-        public List<ModuleEntry> Entries { get; set; }
+        [ForeignKey("entry_id")]
+        public virtual ICollection<ModuleEntry> Entries { get; set; }
     }
 }

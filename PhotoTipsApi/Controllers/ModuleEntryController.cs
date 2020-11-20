@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using PhotoTipsApi.Helpers;
 using PhotoTipsApi.Models;
 using PhotoTipsApi.Repositories;
 
@@ -81,39 +76,31 @@ namespace PhotoTipsApi.Controllers
         }
 
         [HttpGet("{id}/addContentToVideoLecture")]
-        public async Task<ActionResult<ModuleEntry>> AddContentToVideoLecture(string id, [FromQuery] string lectureContentId)
+        public ActionResult<ModuleEntry> AddContentToVideoLecture(string id, [FromQuery] string lectureContentId)
         {
             var moduleEntry = _moduleEntryRepository.Get(id);
             if (moduleEntry == null)
                 NotFound("Module entry not found");
-            
+
             var lectureContent = _lectureContentRepository.Get(lectureContentId);
             if (lectureContent == null)
                 NotFound("Module not found");
-            if(moduleEntry.VideoLecture != null)
-                moduleEntry.VideoLecture.Add(lectureContent);
-            else
-                moduleEntry.VideoLecture = new List<LectureContent>{ lectureContent };            
 
-            return Ok(new {module = await _moduleEntryRepository.Update(moduleEntry)});
+            return Ok(new {module_entry = _moduleEntryRepository.AddToVideoLecture(id, lectureContentId)});
         }
-        
+
         [HttpGet("{id}/addContentToTextLecture")]
-        public async Task<ActionResult<ModuleEntry>> AddContentToTextLecture(string id, [FromQuery] string lectureContentId)
+        public ActionResult<ModuleEntry> AddContentToTextLecture(string id, [FromQuery] string lectureContentId)
         {
             var moduleEntry = _moduleEntryRepository.Get(id);
             if (moduleEntry == null)
                 NotFound("Module entry not found");
-            
+
             var lectureContent = _lectureContentRepository.Get(lectureContentId);
             if (lectureContent == null)
                 NotFound("Module not found");
-            if(moduleEntry.TextLecture != null)
-                moduleEntry.TextLecture.Add(lectureContent);
-            else
-                moduleEntry.TextLecture = new List<LectureContent>{ lectureContent };           
 
-            return Ok(new {module = await  _moduleEntryRepository.Update(moduleEntry)});
+            return Ok(new {module_entry = _moduleEntryRepository.AddToTextLecture(id, lectureContentId)});
         }
     }
 }

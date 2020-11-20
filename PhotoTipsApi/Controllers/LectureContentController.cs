@@ -42,6 +42,12 @@ namespace PhotoTipsApi.Controllers
             return entity;
         }
 
+        [HttpPost]
+        public ActionResult<LectureContent> Create(LectureContent entity)
+        {
+            return Ok(new {lecture_content = _lectureContentRepository.Create(entity)});
+        }
+        
         [HttpPut]
         public IActionResult Update(LectureContent entity)
         {
