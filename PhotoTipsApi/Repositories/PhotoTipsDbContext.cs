@@ -11,17 +11,16 @@ namespace PhotoTipsApi.Repositories
         public DbSet<ModuleEntry> ModuleEntries { get; set; }
         public DbSet<LectureContent> LectureContents { get; set; }
         public DbSet<Photo> Photos { get; set; }
-        
+
         public PhotoTipsDbContext()
         {
             Database.EnsureCreated();
         }
-        
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=photo_tips;Username=minyewoo;Password=wefunk2020");
+            optionsBuilder.UseNpgsql(
+                "Host=85.208.208.156:5000;Port=5432;Database=photo_tips;Username=minyewoo;Password=wefunk2020");
         }
     }
-    
-    
 }
