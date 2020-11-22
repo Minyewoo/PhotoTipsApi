@@ -17,15 +17,16 @@ namespace PhotoTipsApi.Models
 
         [Key] [Column("id")] public string Id { get; set; }
 
+        [Column("index_number")] public int IndexNumber { get; set; }
 
         [Column("type")] public ModuleEntryType Type { get; set; }
 
         [Column("name")] public string Name { get; set; }
 
-        [Column("video_lecture")] public List<LectureContent> VideoLecture { get; set; }
+        [ForeignKey("video_lecture_id")]
+        public virtual ICollection<LectureContent> VideoLecture { get; set; }
 
-        [Column("video_lecture")] public List<LectureContent> TextLecture { get; set; }
-
-        [ForeignKey("module_id")] public Module Module { get; set; }
+        [ForeignKey("text_lecture_id")]
+        public virtual ICollection<LectureContent> TextLecture { get; set; }
     }
 }

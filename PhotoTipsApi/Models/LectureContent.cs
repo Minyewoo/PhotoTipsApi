@@ -15,6 +15,9 @@ namespace PhotoTipsApi.Models
         }
 
         [Key] [Column("id")] public string Id { get; set; }
+
+        [Column("index_number")] public int IndexNumber { get; set; }
+
         [Column("type")] public ContentType Type { get; set; }
         [Column("content")] public string Content { get; set; }
     }

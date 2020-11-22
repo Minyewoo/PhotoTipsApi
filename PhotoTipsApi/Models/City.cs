@@ -8,7 +8,5 @@ namespace PhotoTipsApi.Models
     public class City
     {
         [Key] [Column("name")] public string Name { get; set; }
-
-        public List<User> Users { get; set; }
     }
 }

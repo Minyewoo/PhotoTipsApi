@@ -23,10 +23,11 @@ namespace PhotoTipsApi.Models
 
         [Column("registration_date")] public DateTime RegistrationDate { get; set; }
 
-        [ForeignKey("residence_city_id")] public City ResidenceCity { get; set; }
+        [ForeignKey("residence_city_id")] public virtual City ResidenceCity { get; set; }
 
         [Column("password_hash")] public string PasswordHash { get; set; }
-
-        public List<Photo> Photos { get; set; }
+        
+        [ForeignKey("photo_id")]
+        public virtual ICollection<Photo> Photos { get; set; }
     }
 }

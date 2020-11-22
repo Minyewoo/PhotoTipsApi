@@ -82,9 +82,7 @@ namespace PhotoTipsApi.Controllers
             if (moduleEntry == null)
                 NotFound("Module entry not found");
 
-            module.Entries.Add(moduleEntry);
-
-            return Ok(new {module = _moduleRepository.Update(module)});
+            return Ok(new {module = _moduleRepository.AddModuleEntry(id, moduleEntryId)});
         }
     }
 }

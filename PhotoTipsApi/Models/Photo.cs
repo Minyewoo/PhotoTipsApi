@@ -4,11 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PhotoTipsApi.Models
 {
+    [Table("photo")]
     public class Photo
     {
         [Key] [Column("id")] public string Id { get; set; }
-
-        [ForeignKey("owner_id")] public User Owner;
 
         [Column("name")] public string Name { get; set; }
 

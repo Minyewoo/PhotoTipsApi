@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Microsoft.EntityFrameworkCore;
 using PhotoTipsApi.Models;
 
 namespace PhotoTipsApi.Repositories
@@ -46,12 +47,14 @@ namespace PhotoTipsApi.Repositories
         {
             using var context = new PhotoTipsDbContext();
             context.LectureContents.Remove(lectureContent);
+            context.SaveChanges();
         }
 
         public void Remove([NotNull] string id)
         {
             using var context = new PhotoTipsDbContext();
             context.LectureContents.Remove(context.LectureContents.Find(id));
+            context.SaveChanges();
         }
     }
 }

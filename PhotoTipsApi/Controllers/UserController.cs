@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -77,7 +78,9 @@ namespace PhotoTipsApi.Controllers
                     }
 
                     var photo = new Photo {FileUrl = $"~/{_storageDirectory}/{fileName}"};
-                    user.Photos.Add(photo);
+                    var photos = user.Photos.ToList();
+                    photos.Add(photo);
+                    user.Photos=photos.ToArray();
                     result.Add(photo);
                 }
             }
