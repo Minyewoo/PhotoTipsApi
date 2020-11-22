@@ -28,7 +28,7 @@ namespace PhotoTipsApi.Repositories
             photo.Id = Guid.NewGuid().ToString();
             var createdPhoto = context.Photos.Add(photo);
             context.SaveChanges();
-            return createdPhoto.Entity;
+            return createdPhoto?.Entity;
         }
 
         [CanBeNull]

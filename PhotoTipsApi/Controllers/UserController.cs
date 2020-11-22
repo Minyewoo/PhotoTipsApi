@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PhotoTipsApi.Helpers;
 using PhotoTipsApi.Models;
@@ -16,11 +14,13 @@ namespace PhotoTipsApi.Controllers
     public class UserController : ControllerBase
     {
         private readonly UserRepository _userRepository;
+        private readonly PhotoRepository _photoRepository;
         private readonly string _storageDirectory;
 
-        public UserController(UserRepository repository)
+        public UserController(UserRepository userRepository, PhotoRepository photoRepository)
         {
-            _userRepository = repository;
+            _userRepository = userRepository;
+            _photoRepository = photoRepository;
             _storageDirectory = "images";
         }
 
@@ -52,40 +52,59 @@ namespace PhotoTipsApi.Controllers
             return _userRepository.Update(updatedUser);
         }
 
-        [HttpPost("{token}/addPhoto")]
-        public async Task<IActionResult> AddPhoto(string token, [FromBody] List<IFormFile> files)
+        [HttpPost("addPhoto")]
+        public async Task<IActionResult> AddPhoto([FromForm] UploadRequest request)
         {
-            var user = new JwtManager().CheckUser(_userRepository, token);
+            var user = new JwtManager().CheckUser(_userRepository, request.UserToken);
 
             if (user == null)
             {
                 return NotFound("User not found");
             }
-
-            var result = new List<Photo>();
-
-            foreach (var formFile in files)
+    
+            try
             {
-                if (formFile.Length > 0)
+                var photoName = Path.GetRandomFileName();
+                var thumbnailName = Path.GetRandomFileName();
+                var photoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _storageDirectory,
+                    photoName);
+                var thumbnailPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _storageDirectory,
+                    thumbnailName);
+                
+                using (var photoStream = System.IO.File.Create(photoPath))
                 {
-                    var fileName = $@"{Guid.NewGuid()}";
-                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _storageDirectory,
-                        Path.GetRandomFileName());
-
-                    using (var stream = System.IO.File.Create(filePath))
-                    {
-                        await formFile.CopyToAsync(stream);
-                    }
-
-                    var photo = new Photo {FileUrl = $"~/{_storageDirectory}/{fileName}"};
-                    var photos = user.Photos.ToList();
-                    photos.Add(photo);
-                    user.Photos=photos.ToArray();
-                    result.Add(photo);
+                    await request.File.CopyToAsync(photoStream);
+                    photoStream.Seek(0, SeekOrigin.Begin);
+                    
+                    GetReducedImage(200,200, photoStream)?.Save(thumbnailPath);
                 }
+               
+                var photo = new Photo {FileUrl = $"{_storageDirectory}/{photoName}", ThumbnailUrl = $"{_storageDirectory}/{thumbnailName}"};
+                
+                user.Photos.Add(_photoRepository.Create(photo));
+                _userRepository.Update(user);
+                
+                return Ok(new {photo = photo});
             }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+        
+        private Image GetReducedImage(int width, int height, Stream resourceImage)
+        {
+            try
+            {
+                Image image = Image.FromStream(resourceImage);
+                Image thumb = image.GetThumbnailImage(width, height, () => false, IntPtr.Zero);
 
-            return Ok(new {addedPhotos = result});
+                return thumb;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
     }
 }

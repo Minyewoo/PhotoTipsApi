@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PhotoTipsApi.Helpers;
 using PhotoTipsApi.Models;
@@ -89,7 +90,7 @@ namespace PhotoTipsApi.Controllers
         }
 
         [HttpPost("uploadVideo")]
-        public async Task<IActionResult> UploadVideo(string id, [FromBody] UploadRequest request)
+        public async Task<IActionResult> UploadVideo([FromForm] UploadRequest request)
         {
             var user = new JwtManager().CheckUser(_userRepository, request.UserToken);
 
@@ -103,33 +104,29 @@ namespace PhotoTipsApi.Controllers
                 return BadRequest("Only Admin allowed");
             }
 
-            var result = new List<LectureContent>();
-
-            foreach (var formFile in request.Files)
+            try
             {
-                if (formFile.Length > 0)
+                var fileName = $@"{Guid.NewGuid()}";
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _storageDirectory,
+                    Path.GetRandomFileName());
+                
+                using (var stream = System.IO.File.Create(filePath))
                 {
-                    var fileName = $@"{Guid.NewGuid()}";
-                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _storageDirectory,
-                        Path.GetRandomFileName());
-
-                    using (var stream = System.IO.File.Create(filePath))
-                    {
-                        await formFile.CopyToAsync(stream);
-                    }
-
-                    //var photo = new Photo {FileUrl = $"~/{_storageDirectory}/{fileName}"};
-                    var video = new LectureContent {Type = LectureContent.ContentType.Video, Content = $"~/{_storageDirectory}/{fileName}"};
-                    //user.Photos.Add(photo);
-                    result.Add(_lectureContentRepository.Create(video));
+                    await request.File.CopyToAsync(stream);
                 }
+                
+                var video = new LectureContent {Type = LectureContent.ContentType.Video, Content = $"{_storageDirectory}/{fileName}"};
+                
+                return Ok(new {video = video});
             }
-
-            return Ok(new {addedVideos = result});
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
         
         [HttpPost("uploadImage")]
-        public async Task<IActionResult> UploadImage(string id, [FromBody] UploadRequest request)
+        public async Task<IActionResult> UploadImage([FromForm] UploadRequest request)
         {
             var user = new JwtManager().CheckUser(_userRepository, request.UserToken);
 
@@ -143,29 +140,25 @@ namespace PhotoTipsApi.Controllers
                 return BadRequest("Only Admin allowed");
             }
 
-            var result = new List<LectureContent>();
-
-            foreach (var formFile in request.Files)
+            try
             {
-                if (formFile.Length > 0)
+                var fileName = $@"{Guid.NewGuid()}";
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _storageDirectory,
+                    Path.GetRandomFileName());
+                
+                using (var stream = System.IO.File.Create(filePath))
                 {
-                    var fileName = $@"{Guid.NewGuid()}";
-                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _storageDirectory,
-                        Path.GetRandomFileName());
-
-                    using (var stream = System.IO.File.Create(filePath))
-                    {
-                        await formFile.CopyToAsync(stream);
-                    }
-
-                    //var photo = new Photo {FileUrl = $"~/{_storageDirectory}/{fileName}"};
-                    var image = new LectureContent {Type = LectureContent.ContentType.Image, Content = $"~/{_storageDirectory}/{fileName}"};
-                    //user.Photos.Add(photo);
-                    result.Add(_lectureContentRepository.Create(image));
+                    await request.File.CopyToAsync(stream);
                 }
+                
+                var image = new LectureContent {Type = LectureContent.ContentType.Image, Content = $"{_storageDirectory}/{fileName}"};
+                
+                return Ok(new {image = image});
             }
-
-            return Ok(new {addedImages = result});
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
     }
 }

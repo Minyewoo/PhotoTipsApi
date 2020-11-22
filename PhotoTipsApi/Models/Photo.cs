@@ -9,8 +9,6 @@ namespace PhotoTipsApi.Models
     {
         [Key] [Column("id")] public string Id { get; set; }
 
-        [Column("name")] public string Name { get; set; }
-
         [Column("file_url")] public string FileUrl { get; set; }
 
         [Column("thumbnail_url")] public string ThumbnailUrl { get; set; }
