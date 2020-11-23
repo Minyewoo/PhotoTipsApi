@@ -77,8 +77,9 @@ namespace PhotoTipsApi.Controllers
                 {
                     await request.File.CopyToAsync(photoStream);
                     photoStream.Seek(0, SeekOrigin.Begin);
-                    
-                    GetReducedImage(200,200, photoStream)?.Save(thumbnailPath, ImageFormat.Jpeg);
+
+                    using (var thumbStream = System.IO.File.Create(thumbnailPath))
+                        GetReducedImage(200,200, photoStream)?.Save(thumbStream, ImageFormat.Jpeg);
                 }
                
                 var photo = new Photo {FileUrl = $"{_storageDirectory}/{photoName}", ThumbnailUrl = $"{_storageDirectory}/{thumbnailName}"};
