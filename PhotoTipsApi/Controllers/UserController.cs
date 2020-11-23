@@ -65,8 +65,9 @@ namespace PhotoTipsApi.Controllers
     
             try
             {
-                var photoName = $"{Guid.NewGuid()}.png";
-                var thumbnailName = $"{Guid.NewGuid()}.jpg";
+                var name = Guid.NewGuid();
+                var photoName = $"{name}.png";
+                var thumbnailName = $"{name}_thumb.jpg";
                 var photoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _storageDirectory,
                     photoName);
                 var thumbnailPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _storageDirectory,
