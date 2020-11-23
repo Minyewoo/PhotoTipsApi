@@ -72,15 +72,15 @@ namespace PhotoTipsApi.Controllers
                     photoName);
                 var thumbnailPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _storageDirectory,
                     thumbnailName);
-                
+
                 using (var photoStream = System.IO.File.Create(photoPath))
                 {
                     await request.File.CopyToAsync(photoStream);
-                    photoStream.Seek(0, SeekOrigin.Begin);
-
-                    using (var thumbStream = System.IO.File.Create(thumbnailPath))
-                        GetReducedImage(200,200, photoStream)?.Save(thumbStream, ImageFormat.Jpeg);
                 }
+
+                using (var thumbStream = System.IO.File.OpenRead(photoPath))
+                        GetReducedImage(200,200, thumbStream)?.Save(thumbnailPath, ImageFormat.Jpeg);
+                
                
                 var photo = new Photo {FileUrl = $"{_storageDirectory}/{photoName}", ThumbnailUrl = $"{_storageDirectory}/{thumbnailName}"};
                 
