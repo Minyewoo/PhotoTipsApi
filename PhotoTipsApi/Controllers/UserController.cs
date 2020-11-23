@@ -76,12 +76,10 @@ namespace PhotoTipsApi.Controllers
                 using (var photoStream = System.IO.File.Create(photoPath))
                 {
                     await request.File.CopyToAsync(photoStream);
+                    photoStream.Position = 0;
+                    GetReducedImage(200,200, photoStream)?.Save(thumbnailPath, ImageFormat.Jpeg);
                 }
 
-                using (var thumbStream = System.IO.File.OpenRead(photoPath))
-                        GetReducedImage(200,200, thumbStream)?.Save(thumbnailPath, ImageFormat.Jpeg);
-                
-               
                 var photo = new Photo {FileUrl = $"{_storageDirectory}/{photoName}", ThumbnailUrl = $"{_storageDirectory}/{thumbnailName}"};
                 
                 user.Photos.Add(_photoRepository.Create(photo));
@@ -94,14 +92,13 @@ namespace PhotoTipsApi.Controllers
                 return BadRequest(e.Message);
             }
         }
-        
+
         private Image GetReducedImage(int width, int height, Stream resourceImage)
         {
             try
             {
                 Image image = Image.FromStream(resourceImage);
-                Image thumb = image.GetThumbnailImage(width, height, () => false, IntPtr.Zero);
-
+                Image thumb = image.GetThumbnailImage(width, height, ()=> false, IntPtr.Zero);
                 return thumb;
             }
             catch (Exception e)
