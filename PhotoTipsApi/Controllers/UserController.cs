@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -64,8 +65,8 @@ namespace PhotoTipsApi.Controllers
     
             try
             {
-                var photoName = Path.GetRandomFileName();
-                var thumbnailName = Path.GetRandomFileName();
+                var photoName = $"{Guid.NewGuid()}.png";
+                var thumbnailName = $"{Guid.NewGuid()}.jpg";
                 var photoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _storageDirectory,
                     photoName);
                 var thumbnailPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _storageDirectory,
@@ -76,7 +77,7 @@ namespace PhotoTipsApi.Controllers
                     await request.File.CopyToAsync(photoStream);
                     photoStream.Seek(0, SeekOrigin.Begin);
                     
-                    GetReducedImage(200,200, photoStream)?.Save(thumbnailPath);
+                    GetReducedImage(200,200, photoStream)?.Save(thumbnailPath, ImageFormat.Jpeg);
                 }
                
                 var photo = new Photo {FileUrl = $"{_storageDirectory}/{photoName}", ThumbnailUrl = $"{_storageDirectory}/{thumbnailName}"};

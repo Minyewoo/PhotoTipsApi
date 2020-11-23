@@ -106,7 +106,7 @@ namespace PhotoTipsApi.Controllers
 
             try
             {
-                var fileName = $@"{Guid.NewGuid()}";
+                var fileName = request.File.Name;
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _storageDirectory,
                     Path.GetRandomFileName());
                 
@@ -142,7 +142,7 @@ namespace PhotoTipsApi.Controllers
 
             try
             {
-                var fileName = $@"{Guid.NewGuid()}";
+                var fileName = request.File.Name;
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _storageDirectory,
                     Path.GetRandomFileName());
                 
