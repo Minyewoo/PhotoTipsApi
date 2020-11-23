@@ -67,7 +67,7 @@ namespace PhotoTipsApi.Controllers
             {
                 var name = Guid.NewGuid();
                 var photoName = $"{name}.png";
-                var thumbnailName = $"{name}_thumb.jpg";
+                var thumbnailName = $"{name}_thumb.png";
                 var photoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _storageDirectory,
                     photoName);
                 var thumbnailPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _storageDirectory,
@@ -77,7 +77,7 @@ namespace PhotoTipsApi.Controllers
                 {
                     await request.File.CopyToAsync(photoStream);
                     photoStream.Position = 0;
-                    GetReducedImage(200,200, photoStream)?.Save(thumbnailPath, ImageFormat.Jpeg);
+                    GetReducedImage(200,200, photoStream)?.Save(thumbnailPath, ImageFormat.Png);
                 }
 
                 var photo = new Photo {FileUrl = $"{_storageDirectory}/{photoName}", ThumbnailUrl = $"{_storageDirectory}/{thumbnailName}"};
