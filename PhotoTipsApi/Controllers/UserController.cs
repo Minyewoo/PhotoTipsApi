@@ -67,17 +67,17 @@ namespace PhotoTipsApi.Controllers
             {
                 var name = Guid.NewGuid();
                 var photoName = $"{name}.png";
-                var thumbnailName = $"{name}_thumb.png";
+                var thumbnailName = $"{name}_thumb.jpg";
                 var photoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _storageDirectory,
                     photoName);
                 var thumbnailPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _storageDirectory,
                     thumbnailName);
 
-                using (var photoStream = System.IO.File.Create(photoPath))
+                await using (var photoStream = System.IO.File.Create(photoPath))
                 {
                     await request.File.CopyToAsync(photoStream);
                     photoStream.Position = 0;
-                    GetReducedImage(200,200, photoStream)?.Save(thumbnailPath, ImageFormat.Png);
+                    SaveCompressed(photoStream, thumbnailPath);
                 }
 
                 var photo = new Photo {FileUrl = $"{_storageDirectory}/{photoName}", ThumbnailUrl = $"{_storageDirectory}/{thumbnailName}"};
@@ -93,18 +93,33 @@ namespace PhotoTipsApi.Controllers
             }
         }
 
-        private Image GetReducedImage(int width, int height, Stream resourceImage)
+        private void SaveCompressed(Stream resourceImage, String path)
         {
-            try
+            var image = Image.FromStream(resourceImage);
+            var jpgEncoder = GetEncoder(ImageFormat.Jpeg);
+            var qualityEncoder = Encoder.Quality;
+            
+            var encodingParameters = new EncoderParameters(1)
             {
-                Image image = Image.FromStream(resourceImage);
-                Image thumb = image.GetThumbnailImage(width, height, ()=> false, IntPtr.Zero);
-                return thumb;
-            }
-            catch (Exception e)
+                Param = {[0] = new EncoderParameter(qualityEncoder, 13L)}
+            };
+
+            image.Save(path, jpgEncoder, encodingParameters);
+        }
+        
+        private ImageCodecInfo GetEncoder(ImageFormat format)
+        {
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+
+            foreach (ImageCodecInfo codec in codecs)
             {
-                return null;
+                if (codec.FormatID == format.Guid)
+                {
+                    return codec;
+                }
             }
+    
+            return null;
         }
     }
 }
