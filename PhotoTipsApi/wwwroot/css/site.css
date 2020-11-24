@@ -1,0 +1,295 @@
+@font-face {
+  font-family: "PTRootUIWebMedium";
+  src: url("PT%20Root%20UI_Medium.eot");
+  src: url("PT%20Root%20UI_Medium.eot?#iefix") format("embedded-opentype"),
+    url("PT%20Root%20UI_Medium.woff2") format("woff2"),
+    url("PT%20Root%20UI_Medium.woff") format("woff"),
+    url("PT%20Root%20UI_Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: #f1f1f1;
+}
+
+header {
+  height: 72px;
+  width: 992px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-menu {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+nav li button {
+  border: none;
+  height: 50px;
+  padding: 12px 16px;
+}
+nav .btn-text-icon a {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 26px;
+}
+.btn-text-icon a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: "PTRootUIWebMedium", sans-serif;
+  color: #282828;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 24px;
+}
+button.btn-text-icon {
+  border: none;
+  background: none;
+}
+
+.nav-menu li {
+  display: inline-block;
+  /* padding: 23px, 60px; */
+}
+
+.btn-icon {
+  position: static;
+  width: 24px;
+  height: 24px;
+  margin: 6px 5px;
+  background: url(../images/Icon_web.svg) no-repeat;
+  cursor: pointer;
+}
+
+.btn-icon.course {
+  background-position: -240px -56px;
+}
+
+.btn-icon.gallery {
+  background-position: -272px -16px;
+}
+
+button:hover .btn-icon {
+  filter: invert(27%) sepia(83%) saturate(1413%) hue-rotate(189deg) brightness(116%) contrast(90%);
+}
+button:hover {
+  color: #167bd9;
+}
+button:hover a {
+  color: #167bd9;
+}
+a:hover {
+  color: #167bd9;
+}
+
+.log_in button {
+  height: 40px;
+  background: #f5f5f5;
+  border: 1px solid #282828;
+  box-sizing: border-box;
+  border-radius: 4px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 16px;
+
+  font-family: "PTRootUIWebMedium", sans-serif;
+  font-size: 16px;
+  color: #282828;
+}
+
+.log_in button:hover {
+  border: 1px solid #167bd9;
+  color: #167bd9;
+}
+
+.log_in a {
+  text-decoration: none;
+}
+
+.container {
+  width: 992px;
+  margin: 64px auto;
+}
+
+div {
+  background: none;
+}
+
+h1 {
+  font-family: "Fira Sans", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  background: none;
+  margin-bottom: 16px;
+}
+
+p {
+  font-family: "Fira Sans", sans-serif;
+  font-size: 16px;
+  background: none;
+  line-height: 150%;
+}
+
+.frame {
+  background: #f5f5f5;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.info-card {
+  padding: 24px 8px 22px 40px;
+}
+
+.lesson {
+  padding: 24px 48px 56px 48px;
+}
+
+.lesson-header {
+  /* background: none; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.lesson-header ul {
+  background: none;
+}
+.lesson-type li {
+  background: none;
+  display: inline-block;
+  list-style: none;
+}
+
+li button {
+  border: none;
+  /* display: flex;
+  flex-direction: row;
+  align-items: left;
+  background: none; */
+}
+
+.lesson-type .video-lesson {
+  background-position: -48px -56px;
+}
+
+.lesson-type .text-lesson {
+  background-position: -80px -56px;
+}
+
+.lesson-type li:nth-child(1) {
+  margin-right: 72px;
+}
+
+.btn-icon:hover {
+  filter: invert(27%) sepia(83%) saturate(1413%) hue-rotate(189deg) brightness(116%) contrast(90%);
+}
+
+.btn-icon.active {
+  filter: invert(27%) sepia(83%) saturate(1413%) hue-rotate(189deg) brightness(116%) contrast(90%);
+}
+
+a.back {
+  text-decoration: none;
+  background: none;
+}
+
+/* .btn-text-icon button {
+  border: none;
+  background: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 16px;
+
+  font-family: "PT Root UI Web", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: #282828;
+} */
+
+img {
+  display: block;
+  /* max-width: 100%;
+  height: auto; */
+}
+
+.lesson-subpart {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.lesson-img {
+  width: 380px;
+  margin-left: 40px;
+}
+
+.lesson-img .title {
+  height: 40px;
+  text-align: center;
+  padding: 12px 0;
+}
+
+.lesson-img .title p {
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.lesson-part {
+  margin-bottom: 40px;
+}
+
+.nav-footer ul {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  flex: 1 1 auto;
+  /* align-items: center; */
+}
+
+.nav-footer {
+  margin-bottom: 16px;
+}
+
+.previous-lesson .btn-icon {
+  background-position: -48px -96px;
+}
+.next-lesson .btn-icon {
+  background-position: -25px -133px;
+}
+
+li {
+  background: none;
+  font-family: "Fira Sans", sans-serif;
+  font-size: 16px;
+  background: none;
+}
+
+.additional-info li {
+  font-size: 18px;
+  line-height: 160%;
+}
+.additional-info ul {
+  background: none;
+  list-style: dash inside;
+}
+
+li a {
+  text-decoration: none;
+}
