@@ -105,7 +105,7 @@ namespace PhotoTipsApi.Controllers
             
             var size = image.Size;
             var aspectRatio = size.Width / (double)size.Height;
-            const int boxSize = 200;
+            const int boxSize = 360;
             var scaleFactor = boxSize / (double) (1 > aspectRatio ? size.Height : size.Width);
 
             using var thumb = image.GetThumbnailImage((int) (image.Width * scaleFactor), (int) (image.Height * scaleFactor),
