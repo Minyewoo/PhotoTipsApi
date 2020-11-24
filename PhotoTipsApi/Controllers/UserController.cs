@@ -110,16 +110,8 @@ namespace PhotoTipsApi.Controllers
 
             using var thumb = image.GetThumbnailImage((int) (image.Width * scaleFactor), (int) (image.Height * scaleFactor),
                 () => false, IntPtr.Zero);
-            
-            var jpgEncoder = GetEncoder(ImageFormat.Jpeg);
-            var qualityEncoder = Encoder.Quality;
 
-            var encodingParameters = new EncoderParameters(1)
-            {
-                Param = {[0] = new EncoderParameter(qualityEncoder, 50L)}
-            };
-            
-            thumb.Save(thumbnailPath, jpgEncoder, encodingParameters);
+            thumb.Save(thumbnailPath, ImageFormat.Jpeg);
             image.Save(imagePath, ImageFormat.Png);
             
         }
