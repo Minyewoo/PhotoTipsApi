@@ -26,10 +26,19 @@ namespace PhotoTipsApi.Controllers
             _storageDirectory = "images";
         }
 
+        /// <summary>
+        /// Получить весь созданный контент
+        /// </summary>
+        /// <returns>Список с контентом</returns>
         [HttpGet]
         public ActionResult<List<LectureContent>> Get() =>
             _lectureContentRepository.Get();
 
+        /// <summary>
+        /// Получить конкретный блок с контентом по его id
+        /// </summary>
+        /// <param name="id">Идентификатор контента</param>
+        /// <returns>Объект контента</returns>
         [HttpGet("{id}")]
         public ActionResult<LectureContent> Get(string id)
         {
@@ -43,12 +52,25 @@ namespace PhotoTipsApi.Controllers
             return entity;
         }
 
+        /// <summary>
+        /// Создать контент
+        /// Он бывает трёх типов: Text, Image, Video
+        /// Тексту в поле Content следует положить текст,
+        /// а видео или картинке - ссылку на файл
+        /// </summary>
+        /// <param name="entity">Объект контента (без id)</param>
+        /// <returns>Созданный контент</returns>
         [HttpPost]
         public ActionResult<LectureContent> Create(LectureContent entity)
         {
             return Ok(new {lecture_content = _lectureContentRepository.Create(entity)});
         }
         
+        /// <summary>
+        /// Обновить информацию о контенте урока/дз
+        /// </summary>
+        /// <param name="entity">Изменённый объект модуля (с id)</param>
+        /// <returns></returns>
         [HttpPut]
         public IActionResult Update(LectureContent entity)
         {
@@ -64,6 +86,12 @@ namespace PhotoTipsApi.Controllers
             return NoContent();
         }
 
+        
+        /// <summary>
+        /// Удалить контент по его идентификатору
+        /// </summary>
+        /// <param name="id">Идентификатор контента</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
@@ -79,6 +107,11 @@ namespace PhotoTipsApi.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Создать блок контента с текстом
+        /// </summary>
+        /// <param name="text">Содержание блока (строка с текстом)</param>
+        /// <returns></returns>
         [HttpPost("uploadText")]
         public ActionResult<LectureContent> UploadText(string text)
         {
@@ -89,6 +122,11 @@ namespace PhotoTipsApi.Controllers
             });
         }
 
+        /// <summary>
+        /// Создать блок контента с видео
+        /// </summary>
+        /// <param name="request">JWT-токен пользователя и видео-файл</param>
+        /// <returns>Созданный блок контента с видео</returns>
         [HttpPost("uploadVideo")]
         public async Task<IActionResult> UploadVideo([FromForm] UploadRequest request)
         {
@@ -125,6 +163,11 @@ namespace PhotoTipsApi.Controllers
             }
         }
         
+        /// <summary>
+        /// Создать блок контента с изображением
+        /// </summary>
+        /// <param name="request">JWT-токен пользователя и файл с изображением</param>
+        /// <returns>Созданный блок контента с изображением</returns>
         [HttpPost("uploadImage")]
         public async Task<IActionResult> UploadImage([FromForm] UploadRequest request)
         {

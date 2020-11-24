@@ -25,6 +25,11 @@ namespace PhotoTipsApi.Controllers
             _userRepository = repository;
         }
 
+        /// <summary>
+        /// Зарегистрировать пользователя
+        /// </summary>
+        /// <param name="request">Объект с данными для регистрации: именем, почтвым адресом и паролем</param>
+        /// <returns>Созданный пользователь</returns>
         [HttpPost("register")]
         public IActionResult Register([FromBody] RegisterRequest request)
         {
@@ -43,6 +48,13 @@ namespace PhotoTipsApi.Controllers
             //return CreatedAtRoute("Login", new {email = user.Email, password = request.Password}, _userRepository.Create(user));
         }
 
+        /// <summary>
+        /// Войти в аккаунт пользователя. Это можно сделать с помощью почты и пароля либо с помощью номера телефона и пароля
+        /// </summary>
+        /// <param name="email">Почтовый адрес пользователя</param>
+        /// <param name="phoneNumber">Номер сотового телефона пользователя</param>
+        /// <param name="password">Пароль пользователя</param>
+        /// <returns></returns>
         [HttpGet("login", Name = "Login")]
         public IActionResult Login([CanBeNull] [FromQuery] string email, [CanBeNull] [FromQuery] string phoneNumber,
             [FromQuery] string password)

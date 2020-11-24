@@ -18,6 +18,10 @@ namespace PhotoTipsApi.Controllers
             _moduleEntryRepository = moduleEntryRepository;
         }
 
+        /// <summary>
+        /// Получить все модули и их содержание
+        /// </summary>
+        /// <returns>Список модулей, уроков внутри модулей и контентом внутри уроков</returns>
         [HttpGet]
         public ActionResult<List<Module>> Get() =>
             _moduleRepository.Get();
@@ -35,6 +39,11 @@ namespace PhotoTipsApi.Controllers
             return entity;
         }
 
+        /// <summary>
+        /// Обновить информацию о модуле
+        /// </summary>
+        /// <param name="entity">Изменённый объект модуля (с id)</param>
+        /// <returns></returns>
         [HttpPut]
         public IActionResult Update(Module entity)
         {
@@ -50,6 +59,11 @@ namespace PhotoTipsApi.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Удалить модуль по его идентификатору
+        /// </summary>
+        /// <param name="id">Идентификатор модуля</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
@@ -65,12 +79,23 @@ namespace PhotoTipsApi.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Создать модуль
+        /// </summary>
+        /// <param name="entity">Объект модуля без id и всяких списков</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult<Module> Create(Module entity)
         {
             return Ok(new {module = _moduleRepository.Create(entity)});
         }
 
+        /// <summary>
+        /// Добавить урок/дз в модуль
+        /// </summary>
+        /// <param name="id">Идентификатор модуля</param>
+        /// <param name="moduleEntryId">Идентификатор урока/дз</param>
+        /// <returns>Обновлённый модуль</returns>
         [HttpGet("{id}/addModuleEntry")]
         public ActionResult<Module> AddLesson(string id, [FromQuery] string moduleEntryId)
         {

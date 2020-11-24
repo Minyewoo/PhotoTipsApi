@@ -26,6 +26,11 @@ namespace PhotoTipsApi.Controllers
             _storageDirectory = "images";
         }
 
+        /// <summary>
+        /// Получить информацию о пользователе по его JWT-токену
+        /// </summary>
+        /// <param name="token">JWT-токен (выдаётся при логине)</param>
+        /// <returns>Объект с информацией о пользователе</returns>
         [HttpGet("{token}")]
         public ActionResult<User> Get(string token)
         {
@@ -39,6 +44,12 @@ namespace PhotoTipsApi.Controllers
             return user;
         }
 
+        /// <summary>
+        /// Обновить информацию о пользователе по его JWT-токену
+        /// </summary>
+        /// <param name="token">JWT-токен (выдаётся при логине)</param>
+        /// <param name="updatedUser">Изменённый объект пользователя</param>
+        /// <returns>Объект с изменённой информацией о пользователе</returns>
         [HttpPut("{token}")]
         public ActionResult<User> Update(string token, [FromBody] User updatedUser)
         {
@@ -54,6 +65,11 @@ namespace PhotoTipsApi.Controllers
             return _userRepository.Update(updatedUser);
         }
 
+        /// <summary>
+        /// Добавить фотографию в галерею пользователя
+        /// </summary>
+        /// <param name="request">Объект с токеном пользователя и файлом</param>
+        /// <returns>Добавленное фото</returns>
         [HttpPost("addPhoto")]
         public async Task<IActionResult> AddPhoto([FromForm] UploadRequest request)
         {
