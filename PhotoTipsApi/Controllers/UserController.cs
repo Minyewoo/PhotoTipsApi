@@ -48,8 +48,8 @@ namespace PhotoTipsApi.Controllers
 
             if (user.Id != updatedUser.Id || !user.IsAdmin)
                 return BadRequest("Only Admin or Owner allowed");
-            
-            
+
+
             return _userRepository.Update(updatedUser);
         }
 
@@ -62,7 +62,7 @@ namespace PhotoTipsApi.Controllers
             {
                 return NotFound("User not found");
             }
-    
+
             try
             {
                 var name = Guid.NewGuid();
@@ -80,11 +80,14 @@ namespace PhotoTipsApi.Controllers
                     SaveCompressed(photoStream, thumbnailPath);
                 }
 
-                var photo = new Photo {FileUrl = $"{_storageDirectory}/{photoName}", ThumbnailUrl = $"{_storageDirectory}/{thumbnailName}"};
-                
+                var photo = new Photo
+                {
+                    FileUrl = $"{_storageDirectory}/{photoName}", ThumbnailUrl = $"{_storageDirectory}/{thumbnailName}"
+                };
+
                 user.Photos.Add(_photoRepository.Create(photo));
                 _userRepository.Update(user);
-                
+
                 return Ok(new {photo = photo});
             }
             catch (Exception e)
@@ -95,10 +98,10 @@ namespace PhotoTipsApi.Controllers
 
         private void SaveCompressed(Stream resourceImage, String path)
         {
-            var image = Image.FromStream(resourceImage);
+            using var image = Image.FromStream(resourceImage);
             var jpgEncoder = GetEncoder(ImageFormat.Jpeg);
             var qualityEncoder = Encoder.Quality;
-            
+
             var encodingParameters = new EncoderParameters(1)
             {
                 Param = {[0] = new EncoderParameter(qualityEncoder, 13L)}
@@ -106,7 +109,7 @@ namespace PhotoTipsApi.Controllers
 
             image.Save(path, jpgEncoder, encodingParameters);
         }
-        
+
         private ImageCodecInfo GetEncoder(ImageFormat format)
         {
             ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
@@ -118,7 +121,7 @@ namespace PhotoTipsApi.Controllers
                     return codec;
                 }
             }
-    
+
             return null;
         }
     }
