@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PhotoTipsApi.Helpers;
@@ -73,11 +74,12 @@ namespace PhotoTipsApi.Controllers
                 var thumbnailPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", _storageDirectory,
                     thumbnailName);
 
-                await using (var photoStream = System.IO.File.Create(photoPath))
+                await using (var photoStream = new MemoryStream())
                 {
                     await request.File.CopyToAsync(photoStream);
-                    photoStream.Position = 0;
-                    SaveCompressed(photoStream, thumbnailPath);
+                    photoStream.Seek(0, SeekOrigin.Begin);
+                    
+                    SaveImageWithThumbnail(photoStream, photoPath, thumbnailPath);
                 }
 
                 var photo = new Photo
@@ -96,33 +98,37 @@ namespace PhotoTipsApi.Controllers
             }
         }
 
-        private void SaveCompressed(Stream resourceImage, String path)
+        private void SaveImageWithThumbnail(Stream resourceImage, string imagePath, string thumbnailPath)
         {
             using var image = Image.FromStream(resourceImage);
+            image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            
+            var size = image.Size;
+            var aspectRatio = size.Width / (double)size.Height;
+            const int boxSize = 200;
+            var scaleFactor = boxSize / (double) (1 > aspectRatio ? size.Height : size.Width);
+
+            using var thumb = image.GetThumbnailImage((int) (image.Width * scaleFactor), (int) (image.Height * scaleFactor),
+                () => false, IntPtr.Zero);
+            
             var jpgEncoder = GetEncoder(ImageFormat.Jpeg);
             var qualityEncoder = Encoder.Quality;
 
             var encodingParameters = new EncoderParameters(1)
             {
-                Param = {[0] = new EncoderParameter(qualityEncoder, 13L)}
+                Param = {[0] = new EncoderParameter(qualityEncoder, 50L)}
             };
-
-            image.Save(path, jpgEncoder, encodingParameters);
+            
+            thumb.Save(thumbnailPath, jpgEncoder, encodingParameters);
+            image.Save(imagePath, ImageFormat.Png);
+            
         }
 
         private ImageCodecInfo GetEncoder(ImageFormat format)
         {
-            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+            var codecs = ImageCodecInfo.GetImageEncoders();
 
-            foreach (ImageCodecInfo codec in codecs)
-            {
-                if (codec.FormatID == format.Guid)
-                {
-                    return codec;
-                }
-            }
-
-            return null;
+            return codecs.FirstOrDefault(codec => codec.FormatID == format.Guid);
         }
     }
 }
