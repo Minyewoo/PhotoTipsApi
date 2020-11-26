@@ -23,6 +23,10 @@ namespace PhotoTipsApi.Models
 
         [Column("name")] public string Name { get; set; }
 
+        [Column("description")] public string Description { get; set; }
+        
+        [Column("additional_info")] public string AdditionalInfo { get; set; }
+
         [ForeignKey("video_lecture_id")]
         public virtual ICollection<LectureContent> VideoLecture { get; set; }
 
