@@ -4,6 +4,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PhotoTipsApi.Models
 {
+    public class Book
+    {
+        public string IsbnNumber { get; set; }
+        
+        public string Name { get; set; }
+        
+        public int WrittenYear { get; set; }
+        
+        public string[] Authors { get; set; }
+    }
+    
+    
     [Table("lecture_contents")]
     public class LectureContent
     {
