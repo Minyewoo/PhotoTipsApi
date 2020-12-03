@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using PhotoTips.Core.Models;
 
 namespace PhotoTips.Infrastructure.Repositories
@@ -11,6 +11,7 @@ namespace PhotoTips.Infrastructure.Repositories
         public DbSet<ModuleEntry> ModuleEntries { get; set; }
         public DbSet<LectureContent> LectureContents { get; set; }
         public DbSet<Photo> Photos { get; set; }
+
 
         public PhotoTipsDbContext(DbContextOptions<PhotoTipsDbContext> options) : base(options)
         {
