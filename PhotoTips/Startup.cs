@@ -21,11 +21,11 @@ namespace PhotoTips
 {
     public class Startup
     {
-        private readonly IConfiguration _configuration;
+        public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
         {
-            _configuration = configuration;
+            Configuration = configuration;
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -41,7 +41,7 @@ namespace PhotoTips
                 , typeof(BackofficeBaseController).Assembly);
 
             services.AddDbContext<PhotoTipsDbContext>(options =>
-                options.UseNpgsql(_configuration.GetConnectionString("PhotoTipsDb")));
+                options.UseNpgsql(Configuration.GetConnectionString("PhotoTipsDb")));
             
             services.AddScoped<IUserRepository, UserEfRepository>();
             services.AddScoped<IPhotoRepository, PhotoEfRepository>();
