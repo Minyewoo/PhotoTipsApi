@@ -21,13 +21,6 @@ namespace PhotoTips
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
-
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -40,9 +33,7 @@ namespace PhotoTips
             services.AddMediatR(typeof(Startup).Assembly, typeof(FrontofficeBaseController).Assembly
                 , typeof(BackofficeBaseController).Assembly);
 
-            services.AddDbContext<PhotoTipsDbContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("PhotoTipsDb")));
-            
+            services.AddScoped<PhotoTipsDbContext>();       
             services.AddScoped<IUserRepository, UserEfRepository>();
             services.AddScoped<IPhotoRepository, PhotoEfRepository>();
             services.AddScoped<ICityRepository, CityEfRepository>();

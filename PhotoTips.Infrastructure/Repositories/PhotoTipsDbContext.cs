@@ -12,8 +12,10 @@ namespace PhotoTips.Infrastructure.Repositories
         public DbSet<LectureContent> LectureContents { get; set; }
         public DbSet<Photo> Photos { get; set; }
 
-        public PhotoTipsDbContext(DbContextOptions<PhotoTipsDbContext> options) : base(options)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseNpgsql(
+                "Host=localhost;Port=5432;Database=photo_tips;Username=minyewoo;Password=wefunk2020");
         }
     }
 }
