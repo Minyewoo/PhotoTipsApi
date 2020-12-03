@@ -7,6 +7,8 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
@@ -19,20 +21,28 @@ namespace PhotoTips
 {
     public class Startup
     {
+        private readonly IConfiguration Configuration;
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers()
                 .AddJsonOptions(opts => { opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); });
 
             services.AddSwaggerGen();
-            
+
             services.AddMediatR(typeof(Startup).Assembly, typeof(FrontofficeBaseController).Assembly
                 , typeof(BackofficeBaseController).Assembly);
+
+            services.AddDbContext<PhotoTipsDbContext>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("PhotoTipsDb")));
             
-            services.AddScoped<PhotoTipsDbContext>();
             services.AddScoped<IUserRepository, UserEfRepository>();
             services.AddScoped<IPhotoRepository, PhotoEfRepository>();
             services.AddScoped<ICityRepository, CityEfRepository>();
@@ -51,7 +61,7 @@ namespace PhotoTips
 
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1"));
-            
+
             app.UseRouting();
             app.UseStaticFiles();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
