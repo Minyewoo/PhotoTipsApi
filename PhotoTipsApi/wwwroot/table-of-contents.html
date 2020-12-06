@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Содержание курса</title>
+    <link rel="stylesheet" href="css/site.css" />
+    <link rel="stylesheet" href="css/toc.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <a href=#><img class='logo' src="images/Logo.svg" alt="logo"></a>
+        <nav>
+            <ul class="nav-menu">
+                <li>
+                    <button class="btn-text-icon">
+                        <a href="#">
+                            <div class="btn-icon course"></div>
+                            Курс
+                        </a>
+                    </button>
+                </li>
+                <li>
+                    <button class="btn-text-icon">
+                        <a href="#">
+                            <div class="btn-icon gallery"></div>
+                            Галерея
+                        </a>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+        <div class="log_in">
+            <!-- <img class="user-photo" src="images/Icon web.svg"> -->
+            <a href="#">
+                <button>Войти</button>
+            </a>
+        </div>
+    </header>
+    <div class="container">
+        <div class="last-used-module">
+            <h1 class="UI">Продолжить обучение</h1>
+            <div class="frame module in-progress">
+                <div class="description">
+                    <div class="main-info">
+                        <div class="icon module-status"></div>
+                        <div>
+                            <h2 class="UI">Модуль N</h2>
+                            <p class="UI">
+                                Описание буквально в несколько слов
+                            </p>
+                        </div>
+
+                    </div>
+                    <div class="materials">
+                        <ul>
+                            <li>
+                                <div class="icon homework"></div>
+                                <p class="lesson-name UI priority-2">1 домашнее задание</p>
+                            </li>
+                            <li>
+                                <div class="icon lessons"></div>
+                                <p class="lesson-name UI priority-2">3 урока</p>
+                            </li>
+                        </ul>
+                        <button id="module-1" class="icon open" onclick="openFull(this.id)"></button>
+                    </div>
+                </div>
+                <div class="full-description">
+                    <ul>
+                        <li>
+                            <a href="index.html">
+                                <div class="element-number finish">1.1</div>
+                                <p class="lesson-name UI priority-2">Название первого урока</p>
+                                <p class="duration UI priority-2">44 мин</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html">
+                                <div class="element-number in-progress">1.2</div>
+                                <p class="lesson-name UI priority-2">Название первого урока</p>
+                                <p class="duration UI priority-2">44 мин</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html">
+                                <p class="element-number">1.3</p>
+                                <p class="lesson-name UI priority-2">Название первого урока</p>
+                                <p class="duration UI priority-2">44 мин</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <section class="all-modules">
+            <h1 class="UI">Модули</h1>
+            <div class="frame">
+                <ul>
+                    <li>
+                        <div class="module finish close">
+                            <div class="description">
+                                <div class="main-info">
+                                    <div class="icon module-status"></div>
+                                    <div>
+                                        <h2 class="UI">Модуль N</h2>
+                                        <p class="UI">
+                                            Описание буквально в несколько слов
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div class="materials">
+                                    <ul>
+                                        <li>
+                                            <div class="icon homework"></div>
+                                            <p class="lesson-name UI priority-2">1 домашнее задание</p>
+                                        </li>
+                                        <li>
+                                            <div class="icon lessons"></div>
+                                            <p class="lesson-name UI priority-2">3 урока</p>
+                                        </li>
+                                    </ul>
+                                    <button id="module-2" class="icon open" onclick="openFull(this.id)"></button>
+                                </div>
+                            </div>
+                            <div class="full-description">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">
+                                            <p class="element-number finish">1.1</p>
+                                            <p class="lesson-name UI priority-2">Название первого урока</p>
+                                            <p class="duration UI priority-2">44 мин</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="index.html">
+                                            <p class="element-number in-progress">1.2</p>
+                                            <p class="lesson-name UI priority-2">Название первого урока</p>
+                                            <p class="duration UI priority-2">44 мин</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="index.html">
+                                            <p class="element-number">1.3</p>
+                                            <p class="lesson-name UI priority-2">Название первого урока</p>
+                                            <p class="duration UI priority-2">44 мин</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="module in-progress close">
+                            <div class="description">
+                                <div class="main-info">
+                                    <div class="icon module-status"></div>
+                                    <div>
+                                        <h2 class="UI">Модуль N</h2>
+                                        <p class="UI">
+                                            Описание буквально в несколько слов
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div class="materials">
+                                    <ul>
+                                        <li>
+                                            <div class="icon homework"></div>
+                                            <p class="lesson-name UI priority-2">1 домашнее задание</p>
+                                        </li>
+                                        <li>
+                                            <div class="icon lessons"></div>
+                                            <p class="lesson-name UI priority-2">3 урока</p>
+                                        </li>
+                                    </ul>
+                                    <button id="module-3" class="icon open" onclick="openFull(this.id)"></button>
+                                </div>
+                            </div>
+                            <div class="full-description">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">
+                                            <p class="element-number finish">1.1</p>
+                                            <p class="lesson-name UI priority-2">Название первого урока</p>
+                                            <p class="duration UI priority-2">44 мин</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="index.html">
+                                            <p class="element-number in-progress">1.2</p>
+                                            <p class="lesson-name UI priority-2">Название первого урока</p>
+                                            <p class="duration UI priority-2">44 мин</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="index.html">
+                                            <p class="element-number">1.3</p>
+                                            <p class="lesson-name UI priority-2">Название первого урока</p>
+                                            <p class="duration UI priority-2">44 мин</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="module not-started close">
+                            <div class="description">
+                                <div class="main-info">
+                                    <div class="icon module-status"></div>
+                                    <div>
+                                        <h2 class="UI">Модуль N</h2>
+                                        <p class="UI">
+                                            Описание буквально в несколько слов
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div class="materials">
+                                    <ul>
+                                        <li>
+                                            <div class="icon homework"></div>
+                                            <p class="lesson-name UI priority-2">1 домашнее задание</p>
+                                        </li>
+                                        <li>
+                                            <div class="icon lessons"></div>
+                                            <p class="lesson-name UI priority-2">3 урока</p>
+                                        </li>
+                                    </ul>
+                                    <button id="module-4" class="icon open" onclick="openFull(this.id)"></button>
+                                </div>
+                            </div>
+                            <div class="full-description">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">
+                                            <p class="element-number finish">1.1</p>
+                                            <p class="lesson-name UI priority-2">Название первого урока</p>
+                                            <p class="duration UI priority-2">44 мин</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="index.html">
+                                            <p class="element-number in-progress">1.2</p>
+                                            <p class="lesson-name UI priority-2">Название первого урока</p>
+                                            <p class="duration UI priority-2">44 мин</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="index.html">
+                                            <p class="element-number">1.3</p>
+                                            <p class="lesson-name UI priority-2">Название первого урока</p>
+                                            <p class="duration UI priority-2">44 мин</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        </section>
+        <footer>
+            <p class="copyright"></p>
+            <div class="social-icons"></div>
+        </footer>
+        <!-- <h3>Add</h3>
+    <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
+        <input type="text" id="add-name" placeholder="New to-do">
+        <input type="submit" value="Add">
+    </form>
+
+    <div id="editForm">
+        <h3>Edit</h3>
+        <form action="javascript:void(0);" onsubmit="updateItem()">
+            <input type="hidden" id="edit-id">
+            <input type="checkbox" id="edit-isComplete">
+            <input type="text" id="edit-name">
+            <input type="submit" value="Save">
+            <a onclick="closeInput()" aria-label="Close">&#10006;</a>
+        </form>
+    </div>
+
+    <p id="counter"></p>
+
+    <table>
+        <tr>
+            <th>Is Complete?</th>
+            <th>Name</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tbody id="todos"></tbody>
+    </table>
+
+    <script src="js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        getItems();
+    </script> -->
+        <script src="js/index.js"></script>
+</body>
+
+</html>
