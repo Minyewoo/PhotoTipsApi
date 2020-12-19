@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gallery</title>
+        <link rel="stylesheet" href="css/site.css" />
+        <link rel="stylesheet" href="css/gallery.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <a href=#><img class='logo' src="images/Logo.svg" alt="logo"></a>
+            <nav>
+                <ul class="nav-menu">
+                    <li>
+                        <button class="btn-text-icon">
+                            <a href="#">
+                                <div class="btn-icon course"></div>
+                                Курс
+                            </a>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="btn-text-icon">
+                            <a href="#">
+                                <div class="btn-icon gallery"></div>
+                                Галерея
+                            </a>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            <div class="log_in">
+                <!-- <img class="user-photo" src="images/Icon web.svg"> -->
+                <a href="#">
+                    <button>Войти</button>
+                </a>
+            </div>
+        </header>
+        <div class="container">
+            <div class="frame gallery module last-used-module">
+                <h1 class="UI">Модуль N</h1>
+                <div class="row">
+                    <img id="1" src="./images/gallery_images/20190421_192441.jpg" alt="" onclick="openImg(this.id)">
+                    <img id="2" src="./images/gallery_images/20190425_130943.jpg" alt="" onclick="openImg(this.id)">
+                    <img id="3" src="./images/gallery_images/20190426_135347.jpg" alt="" onclick="openImg(this.id)">
+                    <img id="4" src="./images/gallery_images/20190624_115029.jpg" alt="" onclick="openImg(this.id)">
+                    <img id="5" src="./images/gallery_images/20190624_154458.jpg" alt="" onclick="openImg(this.id)">
+                </div>
+                <div class="row">
+                    <img id="6" src="./images/gallery_images/20190421_192441.jpg" alt="" onclick="openImg(this.id)">
+                    <img id="7" src="./images/gallery_images/20190425_130943.jpg" alt="" onclick="openImg(this.id)">
+                    <img id="8" src="./images/gallery_images/20190426_135347.jpg" alt="" onclick="openImg(this.id)">
+                    <img id="9" src="./images/gallery_images/20190624_115029.jpg" alt="" onclick="openImg(this.id)">
+                    <img id="10" src="./images/gallery_images/20190624_154458.jpg" alt="" onclick="openImg(this.id)">
+                </div>
+                <button id="module-1" class="icon open"></button>
+            </div>
+            <div id="modal" class="modal">
+                <div class="photo-zoom">
+                    <div class="photo">
+                        <img id="modalImg">
+                    </div>
+
+                    <div class="description">
+                        <p class="UI sub-t2">Сведения о фото</p>
+                        <p class="UI sub-t1 module-name">Модуль N</p>
+                        <div class="close" onclick="closeImg()">
+                            <div class="btn-icon"></div>
+                        </div>
+                        <div class="meta-info">
+                            <div class="icon-text datetime">
+                                <div class="btn-icon"></div>
+                                <p class="UI">Ср. 20 окт. 2020 г., 13:56</p>
+                            </div>
+                            <div class="icon-text resolution">
+                                <div class="btn-icon"></div>
+                                <p class="UI">Name.jpeg<br>
+                                    12.2&nbspМпикс. 4032×3024 1,9&nbspМБ
+                            </div>
+                            <div class="icon-text device">
+                                <div class="btn-icon"></div>
+                                <p class="UI">Smartphone<br>
+                                    ƒ/1,8 1/30 4,25&nbspмм ISO&nbsp130
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+        <script src="./js/index.js"></script>
+        <script src="./js/gallery.js"></script>
+    </body>
+
+</html>

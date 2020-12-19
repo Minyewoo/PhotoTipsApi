@@ -1,3 +1,5 @@
 function openFull(clickedId) {
-    $("#" + clickedId).closest(".module").toggleClass("close");
+  $("#" + clickedId)
+    .closest(".module")
+    .toggleClass("close");
 }

@@ -1,0 +1,111 @@
+.gallery.frame {
+  padding: 16px 40px 8px 40px;
+  text-align: center;
+}
+
+.row {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-around; */
+  align-items: flex-start;
+  padding: 0px;
+  margin-bottom: 34px;
+}
+
+.gallery img {
+  display: block;
+  max-width: 200px;
+  height: 200px;
+  flex-grow: 1;
+  width: 16%;
+  margin-right: 4px;
+  object-fit: cover;
+}
+
+.gallery.module button.icon {
+  display: inline-block;
+  background-position: -176px -16px;
+  margin: 0 auto;
+}
+
+/* Photo zoom */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+.photo-zoom {
+  background-color: #f5f5f5;
+  margin: 3% auto;
+  width: 80%;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.photo-zoom .photo {
+  background: #a3a3a3;
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: baseline; */
+  /* max-height: 760px; */
+  max-height: 90vh;
+  overflow: auto;
+  max-width: 90%;
+  flex-grow: 1;
+}
+.photo-zoom img {
+  /* display: flex; */
+  object-fit: contain;
+  width: 100%;
+  height: auto;
+}
+.photo-zoom .description {
+  background: #f5f5f5;
+  position: relative;
+  min-width: 360px;
+  padding-left: 16px;
+  padding-top: 16px;
+}
+.photo-zoom .icon-text {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 16px;
+  margin-right: 44px;
+}
+.photo-zoom .close {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+}
+.photo-zoom .close .btn-icon {
+  margin: 0;
+  background-position: -208px -96px;
+}
+.photo-zoom .btn-icon {
+  margin-right: 16px;
+}
+.photo-zoom .datetime .btn-icon {
+  background-position: -315px -135px;
+}
+.photo-zoom .resolution .btn-icon {
+  background-position: -327px -179px;
+}
+.photo-zoom .device .btn-icon {
+  background-position: -327px -212px;
+}
