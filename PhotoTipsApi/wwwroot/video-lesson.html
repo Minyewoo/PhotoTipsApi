@@ -5,18 +5,19 @@
         <meta charset="UTF-8">
         <title>Lecture content</title>
         <link rel="stylesheet" href="css/site.css" />
+        <link rel="stylesheet" href="css/lesson.css" />
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
     </head>
 
     <body>
         <header>
-            <a href=#><img class='logo' src="images/Logo.svg" alt="logo"></a>
+            <a href="table-of-contents.html"><img class='logo' src="images/Logo.svg" alt="logo"></a>
             <nav>
                 <ul class="nav-menu">
                     <li>
                         <button class="btn-text-icon">
-                            <a href="#">
+                            <a href="table-of-contents.html">
                                 <div class="btn-icon course"></div>
                                 Курс
                             </a>
@@ -24,7 +25,7 @@
                     </li>
                     <li>
                         <button class="btn-text-icon">
-                            <a href="#">
+                            <a href="gallery.html">
                                 <div class="btn-icon gallery"></div>
                                 Галерея
                             </a>
@@ -33,59 +34,55 @@
                 </ul>
             </nav>
             <div class="log_in">
-                <!-- <img class="user-photo" src="images/Icon web.svg"> -->
                 <a href="#">
-                    <button>Войти</button>
+                    <button>Выйти</button>
                 </a>
             </div>
         </header>
         <div class="container">
             <section class="info-card frame">
-                <h1>1.1 Название урока</h1>
-                <p>Краткое описание лекции, уже не в несколько слов, можно в пару предложений. </p>
+                <h1 class="article">1.2 Базовые правила света</h1>
+                <p class="article">В этом уроке научимся не бояться работать со светом.</p>
             </section>
             <article class="lesson frame">
-                <div class="lesson-header">
-                    <ul class="lesson-type">
-                        <li>
-                            <a href=#>
-                                <div class="btn-icon video-lesson active"></div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="index.html">
-                                <div class="btn-icon text-lesson"></div>
-                            </a>
-                        </li>
-                    </ul>
+                <header>
                     <button class="btn-text-icon">
                         <a href="table-of-contents.html" class="back">
                             <div class="btn-icon course"></div>
                             К курсу
                         </a>
                     </button>
-                </div>
+                    <ul class="lesson-type">
+                        <li>
+                            <a href="video-lesson.html">
+                                <div class="btn-icon video-lesson active"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="lesson-2.html">
+                                <div class="btn-icon text-lesson"></div>
+                            </a>
+                        </li>
+                    </ul>
+
+                </header>
                 <div class="lesson-material">
                     <div class="lesson-part">
-                        <h1>Лекция 1</h1>
                         <div class="content">
                             <div class="lesson-subpart video-container">
                                 <div class="video-container">
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/H76pEfqywAc"
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Y1xRH4NXYaU"
                                         frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen>
                                     </iframe>
-
-                                </div>
-                                <div class="title">
-                                    <p>Лучшее видео в мире</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </article>
+
             <div class="nav-footer">
                 <ul>
                     <li class="previous-lesson">
@@ -104,14 +101,6 @@
                             </a>
                         </button>
                     </li>
-                </ul>
-            </div>
-            <div class="frame info-card additional-info">
-                <h1>Дополнительная информация</h1>
-                <ul>
-                    <li>Ссылки</li>
-                    <li>Примеры</li>
-                    <li>и т.п.</li>
                 </ul>
             </div>
             <footer>
