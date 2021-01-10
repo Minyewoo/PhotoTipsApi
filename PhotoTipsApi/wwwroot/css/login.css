@@ -1,0 +1,145 @@
+* {
+  box-sizing: border-box;
+}
+
+/* style the container */
+.container.login,
+.container.sign-up {
+  width: 360px;
+}
+
+.frame.login,
+.frame.sign-up {
+  padding: 48px 32px 24px 32px;
+}
+
+form {
+  background: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login h1 {
+  margin-bottom: 48px;
+}
+
+.sign-up h1 {
+  margin-bottom: 39px;
+}
+/* style inputs and link buttons */
+input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 16px;
+  background: #ffffff;
+  border: 1px solid #878787;
+  border-radius: 4px;
+  margin-bottom: 24px;
+  display: inline-block;
+  font-family: "PTRootUIWebRegular", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: #878787;
+  text-decoration: none; /* remove underline from anchors */
+}
+.login input[type="password"] {
+  margin-bottom: 16px;
+}
+
+input:hover {
+  opacity: 1;
+}
+
+button.forget-password,
+button.sign-up,
+a.sign-up {
+  color: #167bd9;
+  background: none;
+}
+
+div.social {
+  margin-bottom: 36px;
+  position: relative;
+  width: 100%;
+  color: #282828;
+  opacity: 0.5;
+}
+div.social p {
+  position: absolute;
+  text-align: center;
+}
+
+.login div.social p {
+  left: 99px;
+}
+.sign-up div.social p {
+  left: 89px;
+}
+div.hr {
+  content: "";
+  position: absolute;
+  border: 1px solid #282828;
+  opacity: 0.2;
+  width: 30%;
+  top: 7px;
+}
+.sign-up div.hr {
+  width: 25%;
+}
+div.hr.left {
+  left: 0;
+}
+div.hr.right {
+  right: 0;
+}
+
+/* add appropriate colors to fb, twitter and google buttons */
+.google {
+  background-position: -284px -182px;
+  margin-bottom: 40px;
+}
+
+.google:hover {
+  filter: none;
+}
+
+/* style the submit button */
+input[type="submit"] {
+  background-color: #167bd9;
+  color: white;
+  cursor: pointer;
+}
+.login input[type="submit"] {
+  margin-top: 24px;
+}
+
+input[type="submit"]:hover {
+  background-color: #2a8fed;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid #167bd9;
+}
+
+/* vertical line */
+.vl {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  border: 2px solid #ddd;
+  height: 175px;
+}
+
+/* text inside the vertical line */
+.inner {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  padding: 8px 10px;
+}

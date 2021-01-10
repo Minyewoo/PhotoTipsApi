@@ -43,6 +43,7 @@ header {
 
 button {
   cursor: pointer;
+  border: none;
 }
 
 button.icon {
@@ -247,6 +248,7 @@ h1.article {
 p.article {
   font-family: "Fira Sans", sans-serif;
   font-size: 16px;
+  font-weight: 300;
   line-height: 150%;
 }
 
@@ -280,7 +282,6 @@ p.UI {
 }
 
 p.UI.priority-2 {
-  font-family: "PTRootUIWebRegular", sans-serif;
   font-size: 16px;
   font-weight: 300;
   line-height: 24px;
@@ -288,7 +289,6 @@ p.UI.priority-2 {
   text-align: left;
 }
 p.UI.sub-t1 {
-  font-family: "PTRootUIWebRegular", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -298,7 +298,6 @@ p.UI.sub-t1 {
   margin-bottom: 16px;
 }
 p.UI.sub-t2 {
-  font-family: "PTRootUIWebRegular", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -306,4 +305,9 @@ p.UI.sub-t2 {
   letter-spacing: 0.1px;
   color: #282828;
   margin-bottom: 8px;
+}
+
+p.UI.caption {
+  font-size: 12px;
+  line-height: 16px;
 }
