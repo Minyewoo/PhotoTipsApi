@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <link rel="stylesheet" href="css/site.css" />
+        <link rel="stylesheet" href="css/account.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <a href="table-of-contents.html"><img class='logo' src="images/Logo.svg" alt="logo"></a>
+            <nav>
+                <ul class="nav-menu">
+                    <li>
+                        <button class="btn-text-icon">
+                            <a href="table-of-contents.html">
+                                <div class="btn-icon course"></div>
+                                Курс
+                            </a>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="btn-text-icon">
+                            <a href="gallery.html">
+                                <div class="btn-icon gallery"></div>
+                                Галерея
+                            </a>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            <div class="log_in">
+                <a href="login.html">
+                    <button>Выйти</button>
+                </a>
+            </div>
+        </header>
+        <div class="account container">
+            <div class="frame main-info">
+                <img src="./images/user_photo.png" alt="User photo">
+                <div>
+                    <h2 class="UI">John Smith</h2>
+                    <p class="UI email">example@example.com</p>
+                </div>
+
+            </div>
+            <div class="frame full-info">
+                <h2 class="UI">Персональная информация</h2>
+                <form>
+                    <label for="userName">
+                        <p class="UI caption">Имя</p>
+                    </label>
+                    <input id="userName" type="text" value="John">
+                    <label for="userSurname">
+                        <p class="UI caption">Фамилия</p>
+                    </label>
+                    <input id="userSurname" type="text" value="Smith">
+                    <label for="userPhone">
+                        <p class="UI caption">Номер телефона</p>
+                    </label>
+                    <input id="userPhone" type="text" value="+79123456789">
+                    <label for="userCity">
+                        <p class="UI caption">Город</p>
+                    </label>
+                    <input id="userCity" type="text" value="New York">
+                    <input type="submit" value="Сохранить">
+                </form>
+            </div>
+            <div class="frame change-password">
+                <h2 class="UI">Изменение пароля</h2>
+                <form>
+                    <label for="userPassword">
+                        <p class="UI caption">Текущий пароль</p>
+                    </label>
+                    <input id="userPassword" type="password" autocomplete="current-password">
+                    <label for="newPassword">
+                        <p class="UI caption">Новый пароль</p>
+                    </label>
+                    <input id="newPassword" type="password" autocomplete="new-password">
+                    <input type="submit" value="Изменить пароль">
+                </form>
+            </div>
+            </form>
+        </div>
+    </body>
+
+</html>

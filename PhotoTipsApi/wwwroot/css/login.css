@@ -44,6 +44,7 @@ input {
   color: #878787;
   text-decoration: none; /* remove underline from anchors */
 }
+
 .login input[type="password"] {
   margin-bottom: 16px;
 }
@@ -105,23 +106,8 @@ div.hr.right {
   filter: none;
 }
 
-/* style the submit button */
-input[type="submit"] {
-  background-color: #167bd9;
-  color: white;
-  cursor: pointer;
-}
 .login input[type="submit"] {
   margin-top: 24px;
-}
-
-input[type="submit"]:hover {
-  background-color: #2a8fed;
-}
-
-input:focus {
-  outline: none;
-  border: 1px solid #167bd9;
 }
 
 /* vertical line */

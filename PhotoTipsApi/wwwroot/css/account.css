@@ -1,0 +1,57 @@
+.account.container {
+  width: 992px;
+}
+
+.account .frame {
+  padding: 16px 16px 40px 16px;
+}
+
+.main-info {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.main-info.frame {
+  padding: 18px 16px;
+}
+
+.main-info img {
+  height: 64px;
+  border-radius: 50%;
+  margin-right: 32px;
+}
+
+.main-info h2.UI {
+  padding: 0;
+  margin-bottom: 3px;
+}
+
+h2 {
+  margin-bottom: 16px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+input {
+  margin-bottom: 16px;
+  border: none;
+  border-bottom: 1px solid #cdcdcd;
+  background: none;
+  height: 32px;
+  width: 443px;
+  display: inline-block;
+  font-family: "PTRootUIWebRegular", sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  color: #282828;
+  opacity: 1;
+}
+
+form p {
+  color: #878787;
+}

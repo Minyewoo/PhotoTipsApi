@@ -27,6 +27,12 @@
   background-color: #f1f1f1;
 }
 
+ul,
+form,
+label {
+  background: none;
+}
+
 /* header style */
 header {
   height: 72px;
@@ -116,6 +122,35 @@ button:hover {
 
 button:hover a {
   color: #167bd9;
+}
+
+/* style the submit button */
+input[type="submit"] {
+  background-color: #167bd9;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 16px;
+  width: 200px;
+  height: 48px;
+  border: none;
+  border-radius: 4px;
+  font-family: "PTRootUIWebRegular", sans-serif;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 0.03em;
+  color: #f5f5f5;
+}
+
+input[type="submit"]:hover {
+  background-color: #2a8fed;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid #167bd9;
 }
 
 a:hover {
@@ -269,7 +304,7 @@ h2.UI {
   line-height: 130%;
   letter-spacing: 0.15px;
   text-align: left;
-  padding-bottom: 8px;
+  padding: 15px 0;
 }
 
 p.UI {
