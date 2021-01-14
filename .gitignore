@@ -2,6 +2,8 @@ wwwroot/images/*
 wwwroot/lecture_images/*
 wwwroot/lecture_videos/*
 
+*.jpg
+
 *.swp
 *.*~
 project.lock.json
