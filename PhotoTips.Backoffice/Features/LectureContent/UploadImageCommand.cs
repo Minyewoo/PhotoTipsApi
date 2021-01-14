@@ -35,7 +35,6 @@ namespace PhotoTips.Backoffice.Features.LectureContent
             await using (var stream = File.Create(filePath))
             {
                 await request.Image.CopyToAsync(stream, cancellationToken);
-                await stream.FlushAsync(cancellationToken);
             }
                 
 

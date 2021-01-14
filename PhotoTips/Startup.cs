@@ -25,6 +25,11 @@ namespace PhotoTips
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
+                                                                    .AllowAnyMethod()
+                                                                     .AllowAnyHeader())); 
+            
+
             services.AddControllers()
                 .AddJsonOptions(opts => { opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); });
 
@@ -49,6 +54,8 @@ namespace PhotoTips
             {
                 app.UseDeveloperExceptionPage();
             }
+            
+            app.UseCors("AllowAll");
 
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1"));
