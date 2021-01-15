@@ -38,7 +38,7 @@ namespace PhotoTips.Infrastructure.Repositories
 
         public async Task<IReadOnlyCollection<Submission>> Get(User user, CancellationToken cancellationToken)
         {
-            return await _context.Submissions.Where(x => x.Submitter == user)
+            return await _context.Submissions.Where(x => x.Submitter.Id == user.Id)
                 .ToListAsync(cancellationToken: cancellationToken);
         }
 

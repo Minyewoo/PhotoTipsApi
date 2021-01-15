@@ -46,6 +46,7 @@ namespace PhotoTips
             services.AddScoped<ILectureContentRepository, LectureContentEfRepository>();
             services.AddScoped<IModuleEntryRepository, ModuleEntryEfRepository>();
             services.AddScoped<IModuleRepository, ModuleEfRepository>();
+            services.AddScoped<ISubmissionRepository, SubmissionEfRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
