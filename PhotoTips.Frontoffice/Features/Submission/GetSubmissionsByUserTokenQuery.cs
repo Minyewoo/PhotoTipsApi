@@ -32,7 +32,7 @@ namespace PhotoTips.Frontoffice.Features.Submission
 
             if (user == null) return new NotFoundObjectResult("User not found");
 
-            return new OkObjectResult(_submissionRepository.Get(user, cancellationToken));
+            return new OkObjectResult(await _submissionRepository.Get(user, cancellationToken));
         }
     }
 }
