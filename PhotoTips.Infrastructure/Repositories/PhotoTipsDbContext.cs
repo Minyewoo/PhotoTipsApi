@@ -11,6 +11,7 @@ namespace PhotoTips.Infrastructure.Repositories
         public DbSet<ModuleEntry> ModuleEntries { get; set; }
         public DbSet<LectureContent> LectureContents { get; set; }
         public DbSet<Photo> Photos { get; set; }
+        public DbSet<Submission> Submissions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
