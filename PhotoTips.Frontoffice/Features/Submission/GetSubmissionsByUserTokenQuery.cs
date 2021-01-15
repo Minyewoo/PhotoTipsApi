@@ -1,7 +1,9 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PhotoTips.Api.DTOs;
 using PhotoTips.Core.Repositories;
 using PhotoTips.Core.Utils;
 
@@ -31,8 +33,8 @@ namespace PhotoTips.Frontoffice.Features.Submission
             var user = await new JwtManager().FindUserByToken(request.UserToken, _userRepository, cancellationToken);
 
             if (user == null) return new NotFoundObjectResult("User not found");
-
-            return new OkObjectResult(await _submissionRepository.Get(user, cancellationToken));
+            var submissions = await _submissionRepository.Get(user, cancellationToken);
+            return new OkObjectResult(submissions.Select(x => x.ToDto()).ToArray());
         }
     }
 }

@@ -50,7 +50,8 @@ namespace PhotoTips.Backoffice.Features.Submission
             {
                 Submitter = user,
                 ModuleEntry = moduleEntry,
-                Status = Core.Models.Submission.SubmissionStatus.Passed
+                Status = Core.Models.Submission.SubmissionStatus.Passed,
+                Time = DateTime.Now
             };
 
             try
