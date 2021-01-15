@@ -9,11 +9,11 @@ using PhotoTips.Core.Repositories;
 
 namespace PhotoTips.Infrastructure.Repositories
 {
-    public class SubmissionRepository : ISubmissionRepository
+    public class SubmissionEfRepository : ISubmissionRepository
     {
         private readonly PhotoTipsDbContext _context;
 
-        public SubmissionRepository(PhotoTipsDbContext context)
+        public SubmissionEfRepository(PhotoTipsDbContext context)
         {
             _context = context;
         }
