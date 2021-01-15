@@ -69,7 +69,7 @@ namespace PhotoTips
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1"));
 
             app.UseRouting();
-            app.UseStaticFiles();
+            app.UseFileServer();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }

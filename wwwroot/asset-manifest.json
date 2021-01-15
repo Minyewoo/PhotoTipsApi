@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/photo-tips-web/static/css/main.1c574d5f.chunk.css",
+    "main.js": "/photo-tips-web/static/js/main.d05f0de4.chunk.js",
+    "main.js.map": "/photo-tips-web/static/js/main.d05f0de4.chunk.js.map",
+    "runtime-main.js": "/photo-tips-web/static/js/runtime-main.aca0add8.js",
+    "runtime-main.js.map": "/photo-tips-web/static/js/runtime-main.aca0add8.js.map",
+    "static/js/2.7b9dea56.chunk.js": "/photo-tips-web/static/js/2.7b9dea56.chunk.js",
+    "static/js/2.7b9dea56.chunk.js.map": "/photo-tips-web/static/js/2.7b9dea56.chunk.js.map",
+    "index.html": "/photo-tips-web/index.html",
+    "static/css/main.1c574d5f.chunk.css.map": "/photo-tips-web/static/css/main.1c574d5f.chunk.css.map",
+    "static/js/2.7b9dea56.chunk.js.LICENSE.txt": "/photo-tips-web/static/js/2.7b9dea56.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/photo-tips-web/static/media/icon_web.6f58e2e7.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.aca0add8.js",
+    "static/js/2.7b9dea56.chunk.js",
+    "static/css/main.1c574d5f.chunk.css",
+    "static/js/main.d05f0de4.chunk.js"
+  ]
+}
