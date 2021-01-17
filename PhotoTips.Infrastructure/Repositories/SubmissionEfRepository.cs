@@ -42,6 +42,12 @@ namespace PhotoTips.Infrastructure.Repositories
                 .ToListAsync(cancellationToken: cancellationToken);
         }
 
+        public async Task<IReadOnlyCollection<Submission>> GetChecking(CancellationToken cancellationToken)
+        {
+            return await _context.Submissions.Where(x => x.Status == Submission.SubmissionStatus.Checking)
+                .ToListAsync(cancellationToken: cancellationToken);
+        }
+
         public async Task<Submission> Create(Submission submission, CancellationToken cancellationToken)
         {
             submission.Id = Guid.NewGuid().ToString();

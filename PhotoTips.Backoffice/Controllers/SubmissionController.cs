@@ -21,8 +21,8 @@ namespace PhotoTips.Backoffice.Controllers
             return await _mediator.Send(command, HttpContext.RequestAborted);
         }
 
-        [HttpPut("updateStatus")]
-        public async Task<IActionResult> UpdateStatus([FromBody] UpdateSubmissionStatusCommand command)
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateStatus([FromBody] UpdateSubmissionCommand command)
         {
             return await _mediator.Send(command, HttpContext.RequestAborted);
         }

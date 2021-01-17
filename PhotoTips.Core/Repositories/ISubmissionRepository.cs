@@ -14,6 +14,8 @@ namespace PhotoTips.Core.Repositories
         public Task<Submission> Get(string id, CancellationToken cancellationToken);
         
         public Task<IReadOnlyCollection<Submission>> Get(User user, CancellationToken cancellationToken);
+        
+        public Task<IReadOnlyCollection<Submission>> GetChecking(CancellationToken cancellationToken);
 
         public Task<Submission> Create(Submission submission, CancellationToken cancellationToken);
 

@@ -16,6 +16,8 @@ namespace PhotoTips.Core.Models
         public ModuleEntry ModuleEntry { get; set; }
         public Photo Photo { get; set; }
         public SubmissionStatus Status { get; set; }
+        public string Comment { get; set; }
+        public int Mark { get; set; }
         public DateTime Time { get; set; }
     }
 }
