@@ -102,8 +102,8 @@ namespace PhotoTips.Backoffice.Features.Submission
         private void SaveImageWithThumbnail(Stream resourceImage, string imagePath, string thumbnailPath)
         {
             using var image = Image.FromStream(resourceImage);
-            image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-
+            //image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            
             var size = image.Size;
             var aspectRatio = size.Width / (double) size.Height;
             const int boxSize = 360;

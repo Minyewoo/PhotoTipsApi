@@ -20,31 +20,31 @@ namespace PhotoTips.Infrastructure.Repositories
 
         public async Task<IReadOnlyCollection<Submission>> Get(CancellationToken cancellationToken)
         {
-            return await _context.Submissions.ToListAsync(cancellationToken: cancellationToken);
+            return await _context.Submissions.Include(x=> x.Photo).Include(x=>x.ModuleEntry).Include(x=>x.Submitter).ToListAsync(cancellationToken: cancellationToken);
         }
 
         public async Task<IReadOnlyCollection<Submission>> Get(int? skip, int? count,
             CancellationToken cancellationToken)
         {
             return skip.HasValue && count.HasValue
-                ? await _context.Submissions.Skip(skip.Value).Take(count.Value).ToListAsync(cancellationToken)
+                ? await _context.Submissions.Include(x=> x.Photo).Include(x=>x.ModuleEntry).Include(x=>x.Submitter).Skip(skip.Value).Take(count.Value).ToListAsync(cancellationToken)
                 : await Get(cancellationToken);
         }
 
         public async Task<Submission> Get(string id, CancellationToken cancellationToken)
         {
-            return await _context.Submissions.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+            return await _context.Submissions.Include(x=> x.Photo).Include(x=>x.ModuleEntry).Include(x=>x.Submitter).FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
         public async Task<IReadOnlyCollection<Submission>> Get(User user, CancellationToken cancellationToken)
         {
-            return await _context.Submissions.Where(x => x.Submitter.Id == user.Id)
+            return await _context.Submissions.Include(x=> x.Photo).Include(x=>x.ModuleEntry).Include(x=>x.Submitter).Where(x => x.Submitter.Id == user.Id)
                 .ToListAsync(cancellationToken: cancellationToken);
         }
 
         public async Task<IReadOnlyCollection<Submission>> GetChecking(CancellationToken cancellationToken)
         {
-            return await _context.Submissions.Where(x => x.Status == Submission.SubmissionStatus.Checking)
+            return await _context.Submissions.Include(x=> x.Photo).Include(x=>x.ModuleEntry).Include(x=>x.Submitter).Where(x => x.Status == Submission.SubmissionStatus.Checking)
                 .ToListAsync(cancellationToken: cancellationToken);
         }
 
