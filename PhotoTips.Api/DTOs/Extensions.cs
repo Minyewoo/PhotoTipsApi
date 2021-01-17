@@ -5,21 +5,11 @@ namespace PhotoTips.Api.DTOs
 {
     public static class Extensions
     {
-        public static SubmissionAdminDto ToAdminDto(this Submission submission) => new SubmissionAdminDto
-        {
-            Id = submission.Id,
-            ModuleEntryId = submission.ModuleEntry.Id,
-            Photo = submission.Photo.ToDto(),
-            Status = submission.Status,
-            Mark = submission.Mark,
-            Comment = submission.Comment,
-            Time = submission.Time
-        };
         public static SubmissionDto ToDto(this Submission submission) => new SubmissionDto
         {
             Id = submission.Id,
             ModuleEntryId = submission.ModuleEntry.Id,
-            PhotoId = submission.Photo.Id,
+            Photo = submission.Photo.ToDto(),
             Status = submission.Status,
             Mark = submission.Mark,
             Comment = submission.Comment,

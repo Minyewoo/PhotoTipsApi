@@ -11,13 +11,13 @@ namespace PhotoTips.Frontoffice.Features.Submission
 {
     namespace PhotoTips.Frontoffice.Features.Submission
     {
-        public class GetCheckingSubmissionsByUserTokenQuery : IRequest<IActionResult>
+        public class GetAllSubmissionsByAdminTokenQuery : IRequest<IActionResult>
         {
             public string AdminToken { get; set; }
         }
 
         public class
-            GetCheckingSubmissionsByUserTokenQueryHandler : IRequestHandler<GetCheckingSubmissionsByUserTokenQuery,
+            GetCheckingSubmissionsByUserTokenQueryHandler : IRequestHandler<GetAllSubmissionsByAdminTokenQuery,
                 IActionResult>
         {
             private readonly IUserRepository _userRepository;
@@ -30,7 +30,7 @@ namespace PhotoTips.Frontoffice.Features.Submission
                 _submissionRepository = submissionRepository;
             }
 
-            public async Task<IActionResult> Handle(GetCheckingSubmissionsByUserTokenQuery request,
+            public async Task<IActionResult> Handle(GetAllSubmissionsByAdminTokenQuery request,
                 CancellationToken cancellationToken)
             {
                 var user = await new JwtManager().FindUserByToken(request.AdminToken, _userRepository,
@@ -39,8 +39,8 @@ namespace PhotoTips.Frontoffice.Features.Submission
                 if (user == null) return new NotFoundObjectResult("User not found");
                 if (!user.IsAdmin) return new BadRequestObjectResult("Only Admin allowed");
 
-                var submissions = await _submissionRepository.GetChecking(cancellationToken);
-                return new OkObjectResult(submissions.Select(x => x.ToAdminDto()).ToArray());
+                var submissions = await _submissionRepository.Get(cancellationToken);
+                return new OkObjectResult(submissions.Select(x => x.ToDto()).ToArray());
             }
         }
     }

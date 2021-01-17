@@ -22,8 +22,8 @@ namespace PhotoTips.Frontoffice.Controllers
             return await _mediator.Send(query, this.HttpContext.RequestAborted);
         }
         
-        [HttpGet("listChecking")]
-        public async Task<IActionResult> GetListChecking([FromQuery] GetCheckingSubmissionsByUserTokenQuery query)
+        [HttpGet("listAllBy")]
+        public async Task<IActionResult> GetAllList([FromQuery] GetAllSubmissionsByAdminTokenQuery query)
         {
             return await _mediator.Send(query, this.HttpContext.RequestAborted);
         }
